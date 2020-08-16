@@ -4,7 +4,7 @@ const name = "unknown";
 const score = 0;
 const items = 0;
 // Define the player object here
-const player = {
+let player = {
   name,
   score,
   items,
