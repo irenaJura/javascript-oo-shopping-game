@@ -405,6 +405,7 @@ const shop = (prodList, tBill, lastProd) => {
 // Complete this function
 const rateAndExit = () => {
   // Create a new instance of Rating and assign it to a variable named playerRating here
+  const playerRating = new Rating();
   rl.question(
     "How would you rate this game on a scale of 1-10 (1 being the lowest)?:",
     function (r) {
@@ -413,9 +414,9 @@ const rateAndExit = () => {
         rateAndExit();
       } else {
         // Call rating setter method of playerRating to set user entered rate value here
-
+        playerRating.rating = r;
         // Call Object.assign() method here to populate target
-
+        const target = Object.assign({}, player, playerRating);
         console.log(
           `${target.name} you rated this game as ${target.rate}`.green
         );
@@ -428,7 +429,7 @@ const rateAndExit = () => {
 
 // Complete this function
 const exitLost = () => {
-  let pointsToReach; // Assign calculated value to pointsToReach here
+  let pointsToReach = 500 - player.getCurrentScore(); // Assign calculated value to pointsToReach here
   console.log(
     `Your chances are over! You are short of ${pointsToReach} to become a Shopping Master. Good Luck for next time!`
       .yellow
@@ -438,7 +439,7 @@ const exitLost = () => {
 
 // Complete this function
 const exitWon = () => {
-  let finalStatus;
+  let finalStatus = player.status;
   console.log(`Congratulations!!! You became ${finalStatus}!`.blue);
   rateAndExit();
 };
