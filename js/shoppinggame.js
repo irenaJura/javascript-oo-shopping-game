@@ -1,16 +1,22 @@
 let gameComplete = false;
 // Define the three constants here
-let name = "unknown";
-let score = 0;
-let items = 0;
+const name = "unknown";
+const score = 0;
+const items = 0;
 // Define the player object here
 const player = {
   name,
   score,
   items,
-  getCurrentScore = () => this.score,
-  addPoints = (points) => this.score + points,
-  deductPoints = (points) => this.score - points,
+  getCurrentScore() {
+    return this.score;
+  },
+  addPoints(points) {
+    return (this.score = this.score + points);
+  },
+  deductPoints(points) {
+    return (this.score = this.score - points);
+  },
 };
 
 // Define the Product class - write the Constructor function for Product class here
