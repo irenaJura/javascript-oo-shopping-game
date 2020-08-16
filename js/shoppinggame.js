@@ -359,8 +359,8 @@ const shop = (prodList, tBill, lastProd) => {
     `You can buy - ${productDetails}.\n Do you want to buy this item <Y/N>? `
       .yellow,
     function (option) {
-      const regexYes = null; // Use the RegExp built-in object type here as appropriate
-      const regexNo = null; // Use the RegExp built-in object type here as appropriate
+      const regexYes = new RegExp("y", "i"); // Use the RegExp built-in object type here as appropriate
+      const regexNo = new RegExp("n", "i"); // Use the RegExp built-in object type here as appropriate
       if (regexYes.test(option)) {
         totalBill = calculateBill(product, totalBill);
         calculatePoints(product, totalBill);
@@ -369,10 +369,18 @@ const shop = (prodList, tBill, lastProd) => {
         );
         if (player.score >= 500) {
           // Define and set new property status in the player object here
+          Object.defineProperty(player, "status", {
+            value: "Shopping Master",
+          });
+
           exitWon();
         } else {
           let iCount = ++player.items;
           // Make the Object.defineProperty() call here to set the value of items using the value of iCount
+
+          Object.defineProperty(player, "items", {
+            value: iCount,
+          });
 
           if (player.items < 10) {
             shop(prodList, totalBill);
